@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CEC3AFA91708D68800C07745 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC3AFA81708D68800C07745 /* main.cpp */; };
 		CEC3AFAB1708D68900C07745 /* License_Plate_Recognizer.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEC3AFAA1708D68900C07745 /* License_Plate_Recognizer.1 */; };
 		CEC3AFC31708D72000C07745 /* libopencv_calib3d.2.4.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC3AFB21708D72000C07745 /* libopencv_calib3d.2.4.4.dylib */; };
 		CEC3AFC41708D72000C07745 /* libopencv_contrib.2.4.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC3AFB31708D72000C07745 /* libopencv_contrib.2.4.4.dylib */; };
@@ -26,6 +25,8 @@
 		CEC3AFD11708D72000C07745 /* libopencv_ts.2.4.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC3AFC01708D72000C07745 /* libopencv_ts.2.4.4.dylib */; };
 		CEC3AFD21708D72000C07745 /* libopencv_video.2.4.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC3AFC11708D72000C07745 /* libopencv_video.2.4.4.dylib */; };
 		CEC3AFD31708D72000C07745 /* libopencv_videostab.2.4.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC3AFC21708D72000C07745 /* libopencv_videostab.2.4.4.dylib */; };
+		CEE088CF1709CDF800A6BD8F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC3AFA81708D68800C07745 /* main.cpp */; };
+		CEE088D01709CDF800A6BD8F /* gabor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE088C31709BA2A00A6BD8F /* gabor.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -62,6 +63,9 @@
 		CEC3AFC01708D72000C07745 /* libopencv_ts.2.4.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_ts.2.4.4.dylib; path = ../../../../../opt/local/lib/libopencv_ts.2.4.4.dylib; sourceTree = "<group>"; };
 		CEC3AFC11708D72000C07745 /* libopencv_video.2.4.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_video.2.4.4.dylib; path = ../../../../../opt/local/lib/libopencv_video.2.4.4.dylib; sourceTree = "<group>"; };
 		CEC3AFC21708D72000C07745 /* libopencv_videostab.2.4.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videostab.2.4.4.dylib; path = ../../../../../opt/local/lib/libopencv_videostab.2.4.4.dylib; sourceTree = "<group>"; };
+		CEE088C31709BA2A00A6BD8F /* gabor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gabor.cpp; sourceTree = "<group>"; };
+		CEE088C71709BFB500A6BD8F /* gabor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gabor.h; sourceTree = "<group>"; };
+		CEE088C91709C40300A6BD8F /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,9 @@
 			children = (
 				CEC3AFA81708D68800C07745 /* main.cpp */,
 				CEC3AFAA1708D68900C07745 /* License_Plate_Recognizer.1 */,
+				CEE088C31709BA2A00A6BD8F /* gabor.cpp */,
+				CEE088C71709BFB500A6BD8F /* gabor.h */,
+				CEE088C91709C40300A6BD8F /* test.cpp */,
 			);
 			path = "License Plate Recognizer";
 			sourceTree = "<group>";
@@ -193,7 +200,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEC3AFA91708D68800C07745 /* main.cpp in Sources */,
+				CEE088CF1709CDF800A6BD8F /* main.cpp in Sources */,
+				CEE088D01709CDF800A6BD8F /* gabor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +310,7 @@
 				CEC3AFB01708D68900C07745 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
