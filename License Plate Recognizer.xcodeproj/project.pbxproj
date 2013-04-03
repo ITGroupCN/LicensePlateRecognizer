@@ -28,6 +28,7 @@
 		CEC3AFD21708D72000C07745 /* libopencv_video.2.4.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC3AFC11708D72000C07745 /* libopencv_video.2.4.4.dylib */; };
 		CEC3AFD31708D72000C07745 /* libopencv_videostab.2.4.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC3AFC21708D72000C07745 /* libopencv_videostab.2.4.4.dylib */; };
 		CEDCE88B170C5BBC0026E01B /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEDCE889170C5BBC0026E01B /* Rectangle.cpp */; };
+		CEDCE891170C65F10026E01B /* OCREngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEDCE88F170C65F10026E01B /* OCREngine.cpp */; };
 		CEE088CF1709CDF800A6BD8F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC3AFA81708D68800C07745 /* main.cpp */; };
 		CEE088D01709CDF800A6BD8F /* gabor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE088C31709BA2A00A6BD8F /* gabor.cpp */; };
 /* End PBXBuildFile section */
@@ -70,6 +71,8 @@
 		CEC3AFC21708D72000C07745 /* libopencv_videostab.2.4.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videostab.2.4.4.dylib; path = ../../../../../opt/local/lib/libopencv_videostab.2.4.4.dylib; sourceTree = "<group>"; };
 		CEDCE889170C5BBC0026E01B /* Rectangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Rectangle.cpp; sourceTree = "<group>"; };
 		CEDCE88A170C5BBC0026E01B /* Rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rectangle.h; sourceTree = "<group>"; };
+		CEDCE88F170C65F10026E01B /* OCREngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OCREngine.cpp; sourceTree = "<group>"; };
+		CEDCE890170C65F10026E01B /* OCREngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCREngine.h; sourceTree = "<group>"; };
 		CEE088C31709BA2A00A6BD8F /* gabor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gabor.cpp; sourceTree = "<group>"; };
 		CEE088C71709BFB500A6BD8F /* gabor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gabor.h; sourceTree = "<group>"; };
 		CEE088C91709C40300A6BD8F /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
@@ -135,13 +138,13 @@
 		CEC3AFA71708D68800C07745 /* License Plate Recognizer */ = {
 			isa = PBXGroup;
 			children = (
+				CEDCE892170C6B6F0026E01B /* Segmentation */,
+				CEDCE88E170C65E30026E01B /* OCR */,
 				CEC3AFA81708D68800C07745 /* main.cpp */,
 				CEC3AFAA1708D68900C07745 /* License_Plate_Recognizer.1 */,
-				CEE088C31709BA2A00A6BD8F /* gabor.cpp */,
-				CEE088C71709BFB500A6BD8F /* gabor.h */,
+				CEDCE88C170C63AC0026E01B /* Filters */,
 				CEE088C91709C40300A6BD8F /* test.cpp */,
-				CEDCE889170C5BBC0026E01B /* Rectangle.cpp */,
-				CEDCE88A170C5BBC0026E01B /* Rectangle.h */,
+				CEDCE88D170C63BC0026E01B /* Geometric */,
 			);
 			path = "License Plate Recognizer";
 			sourceTree = "<group>";
@@ -168,6 +171,40 @@
 				CEC3AFC21708D72000C07745 /* libopencv_videostab.2.4.4.dylib */,
 			);
 			name = "OpenCV Framework";
+			sourceTree = "<group>";
+		};
+		CEDCE88C170C63AC0026E01B /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				CEE088C31709BA2A00A6BD8F /* gabor.cpp */,
+				CEE088C71709BFB500A6BD8F /* gabor.h */,
+			);
+			name = Filters;
+			sourceTree = "<group>";
+		};
+		CEDCE88D170C63BC0026E01B /* Geometric */ = {
+			isa = PBXGroup;
+			children = (
+				CEDCE889170C5BBC0026E01B /* Rectangle.cpp */,
+				CEDCE88A170C5BBC0026E01B /* Rectangle.h */,
+			);
+			name = Geometric;
+			sourceTree = "<group>";
+		};
+		CEDCE88E170C65E30026E01B /* OCR */ = {
+			isa = PBXGroup;
+			children = (
+				CEDCE88F170C65F10026E01B /* OCREngine.cpp */,
+				CEDCE890170C65F10026E01B /* OCREngine.h */,
+			);
+			name = OCR;
+			sourceTree = "<group>";
+		};
+		CEDCE892170C6B6F0026E01B /* Segmentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Segmentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +261,7 @@
 				CEE088CF1709CDF800A6BD8F /* main.cpp in Sources */,
 				CEE088D01709CDF800A6BD8F /* gabor.cpp in Sources */,
 				CEDCE88B170C5BBC0026E01B /* Rectangle.cpp in Sources */,
+				CEDCE891170C65F10026E01B /* OCREngine.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
