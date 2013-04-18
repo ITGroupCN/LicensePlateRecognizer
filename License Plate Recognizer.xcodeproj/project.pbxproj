@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CE2B9A08170AD4860011A63D /* libtesseract.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2B9A06170AD4860011A63D /* libtesseract.3.dylib */; };
 		CE2B9A09170AD4860011A63D /* libtiff.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2B9A07170AD4860011A63D /* libtiff.5.dylib */; };
+		CEC031C217107D3F00E52A9E /* Segmenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC031C017107D3F00E52A9E /* Segmenter.cpp */; };
 		CEC3AFAB1708D68900C07745 /* License_Plate_Recognizer.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEC3AFAA1708D68900C07745 /* License_Plate_Recognizer.1 */; };
 		CEC3AFC31708D72000C07745 /* libopencv_calib3d.2.4.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC3AFB21708D72000C07745 /* libopencv_calib3d.2.4.4.dylib */; };
 		CEC3AFC41708D72000C07745 /* libopencv_contrib.2.4.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC3AFB31708D72000C07745 /* libopencv_contrib.2.4.4.dylib */; };
@@ -49,6 +50,9 @@
 /* Begin PBXFileReference section */
 		CE2B9A06170AD4860011A63D /* libtesseract.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtesseract.3.dylib; path = /usr/local/lib/libtesseract.3.dylib; sourceTree = "<absolute>"; };
 		CE2B9A07170AD4860011A63D /* libtiff.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtiff.5.dylib; path = /usr/local/Cellar/libtiff/4.0.3/lib/libtiff.5.dylib; sourceTree = "<absolute>"; };
+		CEC031C017107D3F00E52A9E /* Segmenter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Segmenter.cpp; sourceTree = "<group>"; };
+		CEC031C117107D3F00E52A9E /* Segmenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Segmenter.h; sourceTree = "<group>"; };
+		CEC031C41710889100E52A9E /* FilterType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterType.h; sourceTree = "<group>"; };
 		CEC3AFA51708D68800C07745 /* License Plate Recognizer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "License Plate Recognizer"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC3AFA81708D68800C07745 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		CEC3AFAA1708D68900C07745 /* License_Plate_Recognizer.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = License_Plate_Recognizer.1; sourceTree = "<group>"; };
@@ -178,6 +182,7 @@
 			children = (
 				CEE088C31709BA2A00A6BD8F /* gabor.cpp */,
 				CEE088C71709BFB500A6BD8F /* gabor.h */,
+				CEC031C41710889100E52A9E /* FilterType.h */,
 			);
 			name = Filters;
 			sourceTree = "<group>";
@@ -203,6 +208,8 @@
 		CEDCE892170C6B6F0026E01B /* Segmentation */ = {
 			isa = PBXGroup;
 			children = (
+				CEC031C017107D3F00E52A9E /* Segmenter.cpp */,
+				CEC031C117107D3F00E52A9E /* Segmenter.h */,
 			);
 			name = Segmentation;
 			sourceTree = "<group>";
@@ -262,6 +269,7 @@
 				CEE088D01709CDF800A6BD8F /* gabor.cpp in Sources */,
 				CEDCE88B170C5BBC0026E01B /* Rectangle.cpp in Sources */,
 				CEDCE891170C65F10026E01B /* OCREngine.cpp in Sources */,
+				CEC031C217107D3F00E52A9E /* Segmenter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
