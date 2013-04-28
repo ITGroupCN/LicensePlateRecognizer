@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE0D47C2172D33FA00B4361F /* country_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6EEEA7172C5DD800D850F2 /* country_test.cpp */; };
 		CE2B9A08170AD4860011A63D /* libtesseract.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2B9A06170AD4860011A63D /* libtesseract.3.dylib */; };
 		CE2B9A09170AD4860011A63D /* libtiff.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2B9A07170AD4860011A63D /* libtiff.5.dylib */; };
+		CE6EEEA6172C594C00D850F2 /* LPEuroCountryExtract.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6EEEA4172C594C00D850F2 /* LPEuroCountryExtract.cpp */; };
 		CEC031C217107D3F00E52A9E /* Segmenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC031C017107D3F00E52A9E /* Segmenter.cpp */; };
 		CEC3AFAB1708D68900C07745 /* License_Plate_Recognizer.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEC3AFAA1708D68900C07745 /* License_Plate_Recognizer.1 */; };
 		CEC3AFC31708D72000C07745 /* libopencv_calib3d.2.4.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC3AFB21708D72000C07745 /* libopencv_calib3d.2.4.4.dylib */; };
@@ -30,7 +32,6 @@
 		CEC3AFD31708D72000C07745 /* libopencv_videostab.2.4.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC3AFC21708D72000C07745 /* libopencv_videostab.2.4.4.dylib */; };
 		CEDCE88B170C5BBC0026E01B /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEDCE889170C5BBC0026E01B /* Rectangle.cpp */; };
 		CEDCE891170C65F10026E01B /* OCREngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEDCE88F170C65F10026E01B /* OCREngine.cpp */; };
-		CEE088CF1709CDF800A6BD8F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC3AFA81708D68800C07745 /* main.cpp */; };
 		CEE088D01709CDF800A6BD8F /* gabor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE088C31709BA2A00A6BD8F /* gabor.cpp */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,11 @@
 /* Begin PBXFileReference section */
 		CE2B9A06170AD4860011A63D /* libtesseract.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtesseract.3.dylib; path = /usr/local/lib/libtesseract.3.dylib; sourceTree = "<absolute>"; };
 		CE2B9A07170AD4860011A63D /* libtiff.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtiff.5.dylib; path = /usr/local/Cellar/libtiff/4.0.3/lib/libtiff.5.dylib; sourceTree = "<absolute>"; };
+		CE6EEEA4172C594C00D850F2 /* LPEuroCountryExtract.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LPEuroCountryExtract.cpp; sourceTree = "<group>"; };
+		CE6EEEA5172C594C00D850F2 /* LPEuroCountryExtract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPEuroCountryExtract.h; sourceTree = "<group>"; };
+		CE6EEEA7172C5DD800D850F2 /* country_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = country_test.cpp; sourceTree = "<group>"; };
+		CE9A00DD172094A1006B7F83 /* country_guess_trackbars.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = country_guess_trackbars.cpp; sourceTree = "<group>"; };
+		CE9A00E017209FAF006B7F83 /* country_guess.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = country_guess.cpp; sourceTree = "<group>"; };
 		CEC031C017107D3F00E52A9E /* Segmenter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Segmenter.cpp; sourceTree = "<group>"; };
 		CEC031C117107D3F00E52A9E /* Segmenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Segmenter.h; sourceTree = "<group>"; };
 		CEC031C41710889100E52A9E /* FilterType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterType.h; sourceTree = "<group>"; };
@@ -121,9 +127,21 @@
 			name = "Tesseract Framework";
 			sourceTree = "<group>";
 		};
+		CE6EEEA3172C58E700D850F2 /* Country Extractor */ = {
+			isa = PBXGroup;
+			children = (
+				CE6EEEA4172C594C00D850F2 /* LPEuroCountryExtract.cpp */,
+				CE6EEEA5172C594C00D850F2 /* LPEuroCountryExtract.h */,
+			);
+			name = "Country Extractor";
+			sourceTree = "<group>";
+		};
 		CEC3AF9C1708D68800C07745 = {
 			isa = PBXGroup;
 			children = (
+				CE6EEEA7172C5DD800D850F2 /* country_test.cpp */,
+				CE9A00DD172094A1006B7F83 /* country_guess_trackbars.cpp */,
+				CE9A00E017209FAF006B7F83 /* country_guess.cpp */,
 				CE2B9A0A170AD48E0011A63D /* Tesseract Framework */,
 				CEC3AFB11708D6B700C07745 /* OpenCV Framework */,
 				CEC3AFA71708D68800C07745 /* License Plate Recognizer */,
@@ -142,6 +160,7 @@
 		CEC3AFA71708D68800C07745 /* License Plate Recognizer */ = {
 			isa = PBXGroup;
 			children = (
+				CE6EEEA3172C58E700D850F2 /* Country Extractor */,
 				CEDCE892170C6B6F0026E01B /* Segmentation */,
 				CEDCE88E170C65E30026E01B /* OCR */,
 				CEC3AFA81708D68800C07745 /* main.cpp */,
@@ -265,11 +284,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEE088CF1709CDF800A6BD8F /* main.cpp in Sources */,
+				CE0D47C2172D33FA00B4361F /* country_test.cpp in Sources */,
 				CEE088D01709CDF800A6BD8F /* gabor.cpp in Sources */,
 				CEDCE88B170C5BBC0026E01B /* Rectangle.cpp in Sources */,
 				CEDCE891170C65F10026E01B /* OCREngine.cpp in Sources */,
 				CEC031C217107D3F00E52A9E /* Segmenter.cpp in Sources */,
+				CE6EEEA6172C594C00D850F2 /* LPEuroCountryExtract.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
