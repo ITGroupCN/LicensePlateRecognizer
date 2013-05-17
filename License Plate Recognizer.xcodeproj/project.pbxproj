@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE0D47C9172D844600B4361F /* country_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6EEEA7172C5DD800D850F2 /* country_test.cpp */; };
 		CE2B9A08170AD4860011A63D /* libtesseract.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2B9A06170AD4860011A63D /* libtesseract.3.dylib */; };
 		CE2B9A09170AD4860011A63D /* libtiff.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2B9A07170AD4860011A63D /* libtiff.5.dylib */; };
 		CE6EEEA6172C594C00D850F2 /* LPEuroCountryExtract.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6EEEA4172C594C00D850F2 /* LPEuroCountryExtract.cpp */; };
@@ -33,6 +32,7 @@
 		CEDCE88B170C5BBC0026E01B /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEDCE889170C5BBC0026E01B /* Rectangle.cpp */; };
 		CEDCE891170C65F10026E01B /* OCREngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEDCE88F170C65F10026E01B /* OCREngine.cpp */; };
 		CEE088D01709CDF800A6BD8F /* gabor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE088C31709BA2A00A6BD8F /* gabor.cpp */; };
+		CEEF09FE1732E5FE0013D391 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC3AFA81708D68800C07745 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -284,7 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE0D47C9172D844600B4361F /* country_test.cpp in Sources */,
+				CEEF09FE1732E5FE0013D391 /* main.cpp in Sources */,
 				CEE088D01709CDF800A6BD8F /* gabor.cpp in Sources */,
 				CEDCE88B170C5BBC0026E01B /* Rectangle.cpp in Sources */,
 				CEDCE891170C65F10026E01B /* OCREngine.cpp in Sources */,
