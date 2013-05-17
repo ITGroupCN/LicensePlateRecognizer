@@ -22,7 +22,7 @@ string BASEPATH = "/Users/psylock/Documents/XcodeWorkspace/License Plate Recogni
 
 
 int main (int argc, char **argv){
-    Mat source = imread(genFullPath("sample4.jpg"));
+    Mat source = imread(genFullPath("sample1.jpg"));
 
     clock_t begin = clock();
     
