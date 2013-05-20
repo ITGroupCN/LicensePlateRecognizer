@@ -40,7 +40,7 @@ void on_trackbar(int, void*){
 int main (int argc, char **argv){
     
     
-    Mat source = imread(genFullPath("sample9.jpg"));
+    Mat source = imread(genFullPath("uk.jpg"));
     cvtColor(source, hsvImage, CV_BGR2HSV);
     blueZone = Mat(source.rows, source.cols, hsvImage.type());
     

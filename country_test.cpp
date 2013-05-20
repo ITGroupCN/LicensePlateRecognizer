@@ -22,7 +22,7 @@ string BASEPATH = "/Users/psylock/Documents/XcodeWorkspace/License Plate Recogni
 
 
 int main (int argc, char **argv){
-    Mat source = imread(genFullPath("sample2.jpg"));
+    Mat source = imread(genFullPath("ro.jpg"));
 
     clock_t begin = clock();
     
@@ -39,7 +39,7 @@ int main (int argc, char **argv){
     
     stringstream strStream;
     for (int i = 0; i < listChars.size(); ++i){
-     //   showImageGUI("test", 27, listChars[i]);
+        showImageGUI("test", 27, listChars[i]);
         cvtColor(listChars[i], listChars[i], CV_BGR2GRAY);
         ocrEngine.feedImage(listChars[i].data, 1, listChars[i].step1(), 0, 0, listChars[i].cols, listChars[i].rows);
         strStream << ocrEngine.getText();

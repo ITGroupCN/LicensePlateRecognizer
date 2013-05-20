@@ -32,6 +32,7 @@ void OCREngine::setSingleCharacterMode(){
 void OCREngine::feedImage(const unsigned char *imagedata, int bytes_per_pixel, int bytes_per_line, int left, int top, int width, int height){
     if (_initialized){
         _engine->TesseractRect(imagedata, bytes_per_pixel, bytes_per_line, left, top, width, height);
+        _engine->Recognize(0);
         _imagePresent = true;
     }
 }

@@ -43,6 +43,7 @@ OCREngine ocrEngine = OCREngine(NULL, "blueBand");
 void do_track(int , void*){
     threshold(original_track,converted, thresholdV ,255,CV_THRESH_BINARY);
     
+    
     imshow("track", converted);
 
     findContours(converted, contoursBlue, contourHierarchyBlue, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
@@ -153,7 +154,7 @@ int main (int argc, char **argv){
     ocrEngine.setSingleCharacterMode();
     ocrEngine.setWhiteList("ACDFIORSZ");
     
-    Mat source = imread(genFullPath("sample1.jpg"));
+    Mat source = imread(genFullPath("spain.jpg"));
     cvtColor(source, hsvImage, CV_BGR2HSV);
     blueZone = Mat(source.rows, source.cols, hsvImage.type());
     
@@ -178,7 +179,6 @@ int main (int argc, char **argv){
    // drawContours( source, contours_poly, 0, Scalar(0,255,0), 2, 8, std::vector<cv::Vec4i>(), 0, cv::Point() );
   
 
-    Mat converted;
     // Adapt colour space for findContours
 
     cvtColor(extracted, extracted, CV_HSV2BGR);
@@ -186,19 +186,20 @@ int main (int argc, char **argv){
 
 
     
-//    showImageGUI("extracted", 27, converted);
+    showImageGUI("extracted", 27, extracted);
 
   
-    
+    Mat converted;
     Mat kernel = mkKernel(7, 1, 95, 0.69, 21);
     converted = processGabor(extracted,kernel,21);
     
+    showImageGUI("convertedbefore", 27, converted);
 
-    showImageGUI("converted", 27, converted);
     
     converted.convertTo(converted, CV_8UC1);
     
-  
+    showImageGUI("convertedafter", 27, converted);
+
 
     
     dilate(converted, converted, NULL);

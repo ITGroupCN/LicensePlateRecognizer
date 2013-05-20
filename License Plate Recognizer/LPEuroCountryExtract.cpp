@@ -10,6 +10,7 @@ LPEuroCountryExtract::LPEuroCountryExtract(void){
 
 
 LPEuroCountryExtract::LPEuroCountryExtract(Mat* v){
+    debug = true;
     _input = v;
     run();
 }
@@ -118,7 +119,23 @@ void LPEuroCountryExtract::run(void){
  
     
     if (_blueStripPresent){
+        if (debug) cout << "Blue strip present" << endl;
+        
         cropBlueStrip(blueAreaMask);
+        
+        if (debug){ cout << "Blue strip cropped" << endl;
+            namedWindow("Cropped");
+            namedWindow("WithoutStrip");
+
+            imshow("Cropped", *_croppedBlueStrip);
+            imshow("WithoutStrip", *_croppedWithoutStrip);
+
+            waitKey(0);
+            
+            destroyWindow("Cropped");
+            destroyWindow("WithoutStrip");
+        }
+
     
         /** The cropped blue strip is in _croppedBlueStrip */
    
@@ -130,11 +147,41 @@ void LPEuroCountryExtract::run(void){
         Mat kernel = mkKernel(7, 1, 95, 0.69, 21);
         *_croppedBlueStrip = processGabor(*_croppedBlueStrip,kernel,21);
         
-        _croppedBlueStrip->convertTo(*_croppedBlueStrip, CV_8UC1);
+        (*_croppedBlueStrip).convertTo(*_croppedBlueStrip, CV_8UC1);
+        
+        dilate(*_croppedBlueStrip, *_croppedBlueStrip, NULL);
+        dilate(*_croppedBlueStrip, *_croppedBlueStrip, NULL);
+        dilate(*_croppedBlueStrip, *_croppedBlueStrip, NULL);
+        
+        if (debug){
+            cout << "Showing blue strip after filtering" << endl;
+            namedWindow("BlueStripProcessed");
+            
+            imshow("BlueStripProcessed", *_croppedBlueStrip);
+            
+            waitKey(0);
+            
+            destroyWindow("BlueStripProcessed");
 
-     
+        }
+
+        
         threshold(*_croppedBlueStrip, *_croppedBlueStrip, BINARIZE_THRESH, 255, CV_THRESH_BINARY);
 
+        if (debug){
+            cout << "Showing blue strip thresholded" << endl;
+            namedWindow("BlueStripThreshold");
+            
+            imshow("BlueStripThreshold", *_croppedBlueStrip);
+            
+            waitKey(0);
+            
+            destroyWindow("BlueStripThreshold");
+            
+            cout << "Running extraction" << endl;
+
+        }
+        
         /** Run the extraction */
         extractCharacters();
     }
@@ -164,7 +211,7 @@ void LPEuroCountryExtract::extractCharacters(void){
 
     }
     
-    assert(MAX_CHARACTERS <= contoursBlue.size());
+   // assert(MAX_CHARACTERS >= contoursBlue.size());
 
     /** Get rectangles from contours, please take note that some of them are filtered */
     int charsGot = 0;

@@ -18,6 +18,8 @@ using namespace cv;
 
 class LPEuroCountryExtract {
     
+    bool debug;
+    
     /* \brief _input Image input for processing (could be modified) */
     Mat* _input;
     
@@ -65,7 +67,7 @@ class LPEuroCountryExtract {
         LOW_BLUETHRES = Scalar(89,138,51);
         HIGH_BLUETHRES = Scalar(121,255,255);
         MINBLUEPERCENTAGE = 1.75;
-        BINARIZE_THRESH = 56; /** Old value 92 */
+        BINARIZE_THRESH = 92; /** Old value 92 */
         MAX_CHARACTERS = 2;
         SQUARE_RATIO = 3.2;
     }
