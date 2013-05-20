@@ -10,8 +10,9 @@ LPEuroCountryExtract::LPEuroCountryExtract(void){
 
 
 LPEuroCountryExtract::LPEuroCountryExtract(Mat* v){
-    debug = true;
+    debug = false;
     _input = v;
+    _hsvImage = NULL;
     run();
 }
 
@@ -228,7 +229,10 @@ void LPEuroCountryExtract::extractCharacters(void){
     /** Fill the image list */
     for (int i = 0; i <= validChars; ++i){
         Rect square = *squareCharList[i];
-        _listOfCharacters.push_back((*_originalCroppedStrip)(square));
+        Mat temp = (*_originalCroppedStrip)(square);
+        Mat toPut = Mat(temp.rows, temp.cols, temp.type());
+        temp.copyTo(toPut);
+        _listOfCharacters.push_back(toPut);
     }
       
 }

@@ -108,13 +108,7 @@ class LPEuroCountryExtract {
      \param blueZoneMasking The mask previously computed
      **/
     void cropBlueStrip(Mat* blueZoneMasking);
-    
-    /**
-     \brief Returns the cropped image without the blue strip
-          
-     \returns Image without blue strip
-     **/
-    Mat* getCroppedWithoutStrip(void);
+
     
     /**
      \brief Returns the cropped  blue strip
@@ -202,6 +196,14 @@ public:
     vector<Mat> getCharacters(void){
          return _listOfCharacters;        
     }
+    
+    
+    /**
+     \brief Returns the cropped image without the blue strip
+     
+     \returns Image without blue strip
+     **/
+    Mat* getCroppedWithoutStrip(void);
 
 };
 

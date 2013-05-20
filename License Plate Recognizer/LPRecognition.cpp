@@ -1,40 +1,46 @@
 //
-//  country_test.cpp
+//  LPRecognition.cpp
 //  License Plate Recognizer
 //
-//  Created by Mario Orozco Borrego on 27/04/13.
+//  Created by Mario Orozco Borrego on 20/05/13.
 //  Copyright (c) 2013 Mario Orozco Borrego. All rights reserved.
 //
 
 #include <iostream>
-#include <string>
 #include <opencv2/opencv.hpp>
-#include "OCREngine.h"
 #include "LPEuroCountryExtract.h"
+#include "OCREngine.h"
+
 
 using namespace std;
 using namespace cv;
 
-string genFullPath(const char file[]);
-void showImageGUI(const string sWindowName, int iStopKey, const Mat oInputImage);
-
 string BASEPATH = "/Users/psylock/Documents/XcodeWorkspace/License Plate Recognizer/";
 
+string genFullPath(const char file[]);
+void showImageGUI(const string sWindowName, int iStopKey, const Mat oInputImage);
+string getCountryCode(Mat inputFile, Mat** withoutStrip);
 
-int main (int argc, char **argv){
-    Mat source = imread(genFullPath("sample2.jpg"));
 
-    clock_t begin = clock();
+int main(int argc, char**argv){
     
-    LPEuroCountryExtract countryExtract = LPEuroCountryExtract(&source);
+    Mat inputfile = imread(genFullPath("sample2.jpg"));
+
+    Mat** withoutStrip = new Mat*[1]; // Si creo memoria con malloc, luego ocrEngine falla O_O!!!!!!!!!!
+    string countryCode = getCountryCode(inputfile, withoutStrip);
+    showImageGUI("WithoutStrip", 27, *(*withoutStrip));
+    cout << "Country code: " << countryCode << endl;
     
-    clock_t end = clock();
-    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-    
-    cout << "Time elapsed: "  << elapsed_secs*1000 << " ms." << endl;
-    
+    return 0;
+}
+
+
+string getCountryCode(Mat inputFile, Mat** withoutStrip){
+    Mat temp = Mat(inputFile.rows,inputFile.cols,inputFile.type());
+    inputFile.copyTo(temp);
+    LPEuroCountryExtract countryExtract = LPEuroCountryExtract(&temp);
     OCREngine ocrEngine = OCREngine(NULL, "blueBand");
-
+    
     vector<Mat> listChars = countryExtract.getCharacters();
     
     stringstream strStream;
@@ -43,21 +49,17 @@ int main (int argc, char **argv){
         cvtColor(listChars[i], listChars[i], CV_BGR2GRAY);
         ocrEngine.feedImage(listChars[i].data, 1, listChars[i].step1(), 0, 0, listChars[i].cols, listChars[i].rows);
         strStream << ocrEngine.getText();
-        
-        ocrEngine.clean();
+       // ocrEngine.clean();
     }
+    
+    *withoutStrip = countryExtract.getCroppedWithoutStrip();
     
     string output = strStream.str();
     
     output.erase(std::remove(output.begin(), output.end(), '\n'), output.end());
-
-
-    cout << "Country Code: " << output << endl;
-
     
-    return 0;
+    return output;
 }
-
 
 void showImageGUI(const string sWindowName, int iStopKey, const Mat oInputImage){
     
