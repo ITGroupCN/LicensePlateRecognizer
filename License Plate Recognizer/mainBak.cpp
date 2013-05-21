@@ -53,7 +53,7 @@ int main( int argc, char** argv )
     
     Mat kernel = mkKernel(21, 1, 95, 0.69, 21);
     
-    Mat res = processGabor(&src_f,kernel,21);
+    Mat res = processGabor(src_f,kernel,21);
 
    // threshold(res, res, 5, 255, CV_THRESH_BINARY);
     
@@ -146,7 +146,7 @@ int main( int argc, char** argv )
     }
     cout << "Recognized OCR: " << ocrText.str() << endl;
     
-    //showImageGUI("rects", 27, image);
+    showImageGUI("rects", 27, image);
 
     
     std::sort(contours.begin(), contours.end(),DescendingCompare);
@@ -173,11 +173,11 @@ int main( int argc, char** argv )
         }
     }
     
-   // showCroppedContour(image, contours);
+    showCroppedContour(image, contours);
    
     
-   // showImageGUI("contours", 27, drawing);
-   // showImageGUI("res", 27, res);
+   showImageGUI("contours", 27, drawing);
+   showImageGUI("res", 27, res);
     
     return 0;
 }

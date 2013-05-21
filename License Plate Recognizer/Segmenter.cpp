@@ -23,6 +23,7 @@ bool squareCompare (Rectangle i, Rectangle j){
 
 Segmenter::Segmenter(const Mat* v){
 
+    _input = Mat();
     cvtColor(*v, _input, CV_BGR2GRAY);
     _input.copyTo(_original);
 
@@ -65,7 +66,8 @@ void Segmenter::applyFilter(filterType f){
 void Segmenter::preprocess(double thresholdValue){
     
     _input.convertTo(_input, CV_8UC1);
- //   adaptiveThreshold(_input, _input, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, 15, -5);
+    threshold(_input, _input, thresholdValue, 255, CV_THRESH_BINARY);
+
     dilate(_input, _input, NULL);
  //   dilate(_input, _input, NULL);
 

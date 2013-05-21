@@ -100,7 +100,8 @@ void LPEuroCountryExtract::cropBlueStrip(Mat *blueZoneMasking){
     restSquare.height = _input->rows;
     
     _croppedWithoutStrip = new Mat();
-    *_croppedWithoutStrip = (*_input)(restSquare);
+    Mat temp = (*_input)(restSquare);
+    temp.copyTo(*_croppedWithoutStrip);
     
     
 }
