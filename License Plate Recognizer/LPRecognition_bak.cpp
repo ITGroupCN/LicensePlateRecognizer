@@ -71,9 +71,17 @@ int main(int argc, char**argv){
     }
     
     
+    
     namedWindow("result");
     namedWindow("threshold");
     namedWindow("contourDraw");
+    
+    createTrackbar("thresholdValue", "result", &thresholdVariable, 255, doTrackbar);
+    createTrackbar("squareRatioInt", "result", &squareRatioInt, 10, doTrackbar);
+    createTrackbar("squareRatioDec", "result", &squareRatioDecimal, 99, doTrackbar);
+    
+    createTrackbar("minSquareHeight", "result", (int*)&minSquareHeight, withoutStrip.rows, doTrackbar);
+    createTrackbar("minSquareWitdth", "result", (int*)&minSquareWidth, withoutStrip.cols, doTrackbar);
     
     doTrackbar(0, 0);
     waitKey(0);
