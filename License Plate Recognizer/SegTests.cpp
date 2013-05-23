@@ -12,6 +12,7 @@
 #include "OCREngine.h"
 #include "LPEuroCountryExtract.h"
 #include "LPStandarSegmenter.h"
+#include "LPGermanySegmenter.h"
 
 using namespace std;
 using namespace cv;
@@ -26,7 +27,7 @@ string getCountryCode(Mat inputFile, Mat** withoutStrip);
 int main (int argc, char **argv){
     Mat source = imread(genFullPath("sample1.jpg"));
     
-    LPStandarSegmenter seg = LPStandarSegmenter(source);
+    LPGermanySegmenter seg = LPGermanySegmenter(source);
     seg.run();
     vector<Mat> result = seg.getResult();
    

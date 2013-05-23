@@ -11,13 +11,14 @@
 
 #include <iostream>
 #include "LPStandarSegmenterImpl.h"
-#include "SegmenterType.h"
 
 #include <opencv2/opencv.hpp>
 
 using namespace cv;
 
 class LPStandarSegmenter {
+ 
+protected:
     LPStandarSegmenterImpl oImpl;
     Mat input;
     
@@ -35,6 +36,24 @@ public:
     inline vector<Mat> getResult(){
         return oImpl.getResult();
     }
+    
+  
+    inline void preprocess(Mat *input){
+        oImpl.preprocess(input);
+    }
+    inline void filter(Mat *input){
+        oImpl.filter(input);
+    }
+    inline void thresholdM(Mat *input){
+        oImpl.thresholdM(input);
+    }
+    inline void calculateContours(Mat *input){
+        oImpl.calculateContours(input);
+    }
+    inline void processForResult(Mat *input){
+        oImpl.processForResult(input);
+    }
+
     
 };
 

@@ -47,6 +47,7 @@ int main(int argc, char**argv){
     Mat inputfile = imread(genFullPath("uk.jpg"));
     Mat originalInputFile; inputfile.copyTo(originalInputFile);
     Mat** withoutStripPtr = new Mat*[1]; // Si creo memoria con malloc, luego ocrEngine falla O_O!!!!!!!!!!
+    
     string countryCode = getCountryCode(inputfile, withoutStripPtr);
    // showImageGUI("WithoutStrip", 27, *(*withoutStripPtr));
     

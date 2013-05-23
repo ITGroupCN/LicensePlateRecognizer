@@ -33,4 +33,6 @@ public:
     Point& getCenter(void);
 };
 
+
+bool squareCompare (Rectangle i, Rectangle j);
 #endif /* defined(__License_Plate_Recognizer__Rectangle__) */

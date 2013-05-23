@@ -10,39 +10,51 @@
 #include "gabor.h"
 #include "Rectangle.h"
 
-bool squareCompare (Rectangle i, Rectangle j){
-    return (i.getCenter().x < j.getCenter().x);
-}
-
 
 void LPStandarSegmenterImpl :: run(Mat input){
     initializeThresholds();
-    
-    Mat inputCopy; input.copyTo(inputCopy);
-    cvtColor(input, input, CV_BGR2GRAY);
-    
-    /**********************************/
-    /******* FILTER ********************/
-    /**********************************/
-    Mat kernel = mkKernel(21,1,95,0.69,21);
-    input = processGabor(input,kernel,21);
-    
-    /**********************************/
-    /******* THRESHOLD ********************/
-    /**********************************/
-    threshold(input, input, THRESHOLD_BINARIZE, 255, CV_THRESH_BINARY);
+    preprocess(&input);
+    filter(&input);
+    thresholdM(&input);
+    calculateContours(&input);
+    processForResult(&input);
+}
 
-    
-    /**********************************/
-    /******* CONTOURS ********************/
-    /**********************************/
-    vector<vector<Point> > _contours;
-    vector<Vec4i> _contourHierarchy;
-    Mat contourTemp; input.convertTo(contourTemp,CV_8UC1);
-    
+
+void LPStandarSegmenterImpl::setResult(vector<Mat> v){
+    result = v;
+}
+
+
+void LPStandarSegmenterImpl::initializeThresholds(){
+    // THRESHOLDS
+    THRESHOLD_BINARIZE = 151;
+    SQUARE_RATIO = 3.2;
+    MIN_SQUARE_HEIGHT_PERCENTAGE = 14.4;
+    MIN_SQUARE_WIDTH_PERCENTAGE = 5;
+    MAX_ALLOWED_HEIGHT_VARIATION = 7;
+}
+
+
+
+
+void LPStandarSegmenterImpl::preprocess(Mat *input){
+    input->copyTo(inputCopy);
+    cvtColor(*input, *input, CV_BGR2GRAY);
+}
+void LPStandarSegmenterImpl::filter(Mat *input){
+    Mat kernel = mkKernel(21,1,95,0.69,21);
+    *input = processGabor(*input,kernel,21);
+}
+void LPStandarSegmenterImpl::thresholdM(Mat *input){
+    threshold(*input, *input, THRESHOLD_BINARIZE, 255, CV_THRESH_BINARY);
+}
+void LPStandarSegmenterImpl::calculateContours(Mat *input){
+    Mat contourTemp; input->convertTo(contourTemp,CV_8UC1);
     findContours(contourTemp, _contours, _contourHierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_TC89_KCOS);
-    
-    
+}
+
+void LPStandarSegmenterImpl::processForResult(Mat *input){
     /**********************************/
     /******* PROCESS CONTOURS *********/
     /**********************************/
@@ -75,7 +87,7 @@ void LPStandarSegmenterImpl :: run(Mat input){
          *                   , the height must represent a certain percentage of the whole heigth 14.4%
          *                   , the width must represent a certain percentage of the whole width 5%
          */
-        if ((f1/f2) < SQUARE_RATIO && ((height*100)/input.rows) > MIN_SQUARE_HEIGHT_PERCENTAGE && ((width*100)/input.cols) > MIN_SQUARE_WIDTH_PERCENTAGE){
+    if ((f1/f2) < SQUARE_RATIO && ((height*100)/inputCopy.rows) > MIN_SQUARE_HEIGHT_PERCENTAGE && ((width*100)/inputCopy.cols) > MIN_SQUARE_WIDTH_PERCENTAGE){
             
             if (maxHeight < height){
                 maxHeight = height;
@@ -93,7 +105,7 @@ void LPStandarSegmenterImpl :: run(Mat input){
             listOfSquares.push_back(rectangle);
         }
     }
-
+    
     
     /** Sort them */
     sort(listOfSquares.begin(),listOfSquares.end(),squareCompare);
@@ -101,7 +113,7 @@ void LPStandarSegmenterImpl :: run(Mat input){
     /** Second pass filter and result storing*/
     vector<Mat> resultToReturn;
     for (int i = 0; i < listOfSquares.size(); ++i){
-
+        
         Rect squareGot = listOfSquares[i].getRect();
         
         /** Post filtering!!!!, the height of the square must be greather than the half of the tallest square found */
@@ -138,19 +150,6 @@ void LPStandarSegmenterImpl :: run(Mat input){
     
     // Store the result in result
     setResult(resultToReturn);
+
 }
 
-
-void LPStandarSegmenterImpl::setResult(vector<Mat> v){
-    result = v;
-}
-
-
-void LPStandarSegmenterImpl::initializeThresholds(){
-    // THRESHOLDS
-    THRESHOLD_BINARIZE = 151;
-    SQUARE_RATIO = 3.2;
-    MIN_SQUARE_HEIGHT_PERCENTAGE = 14.4;
-    MIN_SQUARE_WIDTH_PERCENTAGE = 5;
-    MAX_ALLOWED_HEIGHT_VARIATION = 7;
-}
