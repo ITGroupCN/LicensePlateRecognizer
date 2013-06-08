@@ -18,10 +18,6 @@ RNG rng(12345);
 string genFullPath(char file[]);
 void showImageGUI(const String sWindowName, int iStopKey, const Mat oInputImage);
 bool DescendingCompare (std::vector<cv::Point> i,std::vector<cv::Point> j) { return (i.size()>j.size()); }
-
-bool squareCompare (Rectangle i, Rectangle j){
-    return (i.getCenter().x < j.getCenter().x);
-}
 void showCroppedContour(Mat image, vector<vector<Point> >contours);
 
 int main( int argc, char** argv )
@@ -42,7 +38,7 @@ int main( int argc, char** argv )
     
     myOCR->SetPageSegMode(tesseract::PageSegMode(10));
     
-    Mat image = imread( genFullPath("sample2.jpg").c_str(), 1 );
+    Mat image = imread( genFullPath("sample1xxx.jpg").c_str(), 1 );
     Mat src,src_f;
     
     showImageGUI("source", 27, image);
@@ -146,7 +142,7 @@ int main( int argc, char** argv )
     }
     cout << "Recognized OCR: " << ocrText.str() << endl;
     
-    showImageGUI("rects", 27, image);
+ //   showImageGUI("rects", 27, image);
 
     
     std::sort(contours.begin(), contours.end(),DescendingCompare);
@@ -176,8 +172,8 @@ int main( int argc, char** argv )
     showCroppedContour(image, contours);
    
     
-   showImageGUI("contours", 27, drawing);
-   showImageGUI("res", 27, res);
+  // showImageGUI("contours", 27, drawing);
+   //showImageGUI("res", 27, res);
     
     return 0;
 }

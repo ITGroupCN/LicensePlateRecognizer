@@ -11,25 +11,41 @@
 
 #include <iostream>
 #include "LPStandarSegmenter.h"
+#include "LPFranceSegmenterImpl.h"
 
 class LPFranceSegmenter : public LPStandarSegmenter {
     
    
 protected:
     // Possible own implementation if the process it's really different from the base class
+    LPFranceSegmenterImpl ownImpl;
     
 public:
     
     LPFranceSegmenter(Mat inputV) : LPStandarSegmenter(inputV){
-        
+        ownImpl = LPFranceSegmenterImpl();
     }
     
-  /**  void run(){
-        oImpl.preprocess(&input);
-        oImpl.filter(&input);
+    void run(){
+        ownImpl.run(input);
+    }
+    
+    // If overriding is not done, it will return the result from the standar implementation
+    inline vector<Mat> getResult(){
+        vector<Mat> result =  ownImpl.getResult();
+     /*   for (int i = 0; i < result.size(); ++i){
+            cvtColor(result[i], result[i], CV_BGR2GRAY);
+            
+            Mat new_image = Mat::zeros(result[i].size(), result[i].type());
         
-        //** ETC ETC **/
-    //}
+            Mat sub_mat = Mat::ones(result[i].size(), result[i].type())*255;
+        
+            subtract(sub_mat, result[i], new_image);
+            result[i] = new_image;
+        }*/
+        return result;
+    }
+    
     
 };
 

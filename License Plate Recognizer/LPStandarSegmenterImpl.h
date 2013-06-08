@@ -17,7 +17,6 @@ using namespace cv;
 
 class LPStandarSegmenterImpl{
     
-    vector<Mat> result;
     Mat inputCopy;
     void initializeThresholds();
 
@@ -30,7 +29,11 @@ class LPStandarSegmenterImpl{
     
     vector<vector<Point> > _contours;
     vector<Vec4i> _contourHierarchy;
-        
+    
+    
+protected:
+    vector<Mat> result;
+    
 public:
     
     LPStandarSegmenterImpl(){
@@ -50,6 +53,7 @@ public:
     inline vector<Mat> getResult(){
         return result;
     }
+
     
 };
 
