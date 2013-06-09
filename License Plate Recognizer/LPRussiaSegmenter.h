@@ -12,16 +12,35 @@
 #include <iostream>
 
 #include "LPStandarSegmenter.h"
+#include "LPRussiaSegmenterImpl.h"
 
 
 class LPRussiaSegmenter : public LPStandarSegmenter {
     
+    LPRussiaSegmenterImpl ownImpl;
     
 public:
     
     LPRussiaSegmenter(Mat inputV) : LPStandarSegmenter(inputV){
-        
+        ownImpl = LPRussiaSegmenterImpl();
     }
+    
+    inline void run(){
+        oImpl.preprocess(&input);
+        oImpl.filter(&input);
+        ownImpl.thresholdM(&input);
+        oImpl.calculateContours(&input);
+        ownImpl.setInputCopy(oImpl.getInputCopy());
+        ownImpl.setContours(oImpl.getContours());
+        ownImpl.processForResult(&input);
+    
+    }
+   
+    inline vector<Mat> getResult(){
+        return ownImpl.getResult();
+    }
+    
+
     
 };
 

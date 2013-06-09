@@ -33,11 +33,13 @@ class LPStandarSegmenterImpl{
     
 protected:
     vector<Mat> result;
+    static bool squareCompare (Rectangle i, Rectangle j);
+    static bool descendingCompare(vector<Point> i, vector<Point> j);
     
 public:
     
     LPStandarSegmenterImpl(){
-        
+        initializeThresholds();
     }
     
 
@@ -52,6 +54,14 @@ public:
     void setResult(vector<Mat> v);
     inline vector<Mat> getResult(){
         return result;
+    }
+    
+    inline Mat* getInputCopy(){
+        return &inputCopy;
+    }
+    
+    inline vector<vector<Point> >* getContours(){
+        return &_contours;
     }
 
     

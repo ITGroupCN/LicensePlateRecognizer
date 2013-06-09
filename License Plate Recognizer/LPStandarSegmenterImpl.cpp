@@ -12,7 +12,6 @@
 
 
 void LPStandarSegmenterImpl :: run(Mat input){
-    initializeThresholds();
     preprocess(&input);
     filter(&input);
     thresholdM(&input);
@@ -152,4 +151,14 @@ void LPStandarSegmenterImpl::processForResult(Mat *input){
     setResult(resultToReturn);
 
 }
+
+
+bool LPStandarSegmenterImpl::squareCompare (Rectangle i, Rectangle j){
+    return (i.getCenter().x < j.getCenter().x);
+}
+
+bool LPStandarSegmenterImpl::descendingCompare(vector<Point> i, vector<Point> j){
+    return i.size() > j.size();
+}
+
 

@@ -10,7 +10,6 @@
 #include <opencv2/opencv.hpp>
 #include "LPEuroCountryExtract.h"
 #include "OCREngine.h"
-#include "Segmenter.h"
 #include "gabor.h"
 #include "Rectangle.h"
 
@@ -44,7 +43,7 @@ int maxAllowedHeightVariation;
 
 int main(int argc, char**argv){
     
-    Mat inputfile = imread(genFullPath("uk.jpg"));
+    Mat inputfile = imread(genFullPath("russiaTest1.jpg"));
     Mat originalInputFile; inputfile.copyTo(originalInputFile);
     Mat** withoutStripPtr = new Mat*[1]; // Si creo memoria con malloc, luego ocrEngine falla O_O!!!!!!!!!!
     

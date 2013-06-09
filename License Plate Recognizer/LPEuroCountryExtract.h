@@ -166,6 +166,7 @@ class LPEuroCountryExtract {
      **/
     void run(void);
 
+    static bool descendingCompare (vector<Point> i, vector<Point> j);
     
 public:
     

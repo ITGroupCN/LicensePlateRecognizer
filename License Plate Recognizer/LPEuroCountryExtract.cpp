@@ -58,7 +58,7 @@ float LPEuroCountryExtract::getPercentageOfBlue(Mat*v){
 /**
   \brief Comparator used for sorting contours 
  */
-bool descendingCompare (vector<Point> i, vector<Point> j)
+bool LPEuroCountryExtract::descendingCompare (vector<Point> i, vector<Point> j)
 {
     return (i.size()>j.size());
 }

@@ -34,8 +34,3 @@ Rect& Rectangle:: getRect(void){
 Point& Rectangle:: getCenter(void){
         return _center;
     }
-
-
-bool squareCompare (Rectangle i, Rectangle j){
-    return (i.getCenter().x < j.getCenter().x);
-}
