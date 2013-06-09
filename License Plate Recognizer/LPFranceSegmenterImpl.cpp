@@ -8,6 +8,7 @@
 
 #include "LPFranceSegmenterImpl.h"
 #include "gabor.h"
+#include "Rectangle.h"
 
 
 void LPFranceSegmenterImpl::run(Mat input){
@@ -48,14 +49,18 @@ void LPFranceSegmenterImpl::run(Mat input){
         dilate(*_croppedBlueStrip,*_croppedBlueStrip,NULL);
         dilate(*_croppedBlueStrip,*_croppedBlueStrip,NULL);
         
-        // CROP HALF BOTTOM
         
-        Rect bottomRect = Rect(0, _croppedBlueStrip->rows/2, _croppedBlueStrip->cols, _croppedBlueStrip->rows/2);
-        
-        Mat halfCropped = (*_croppedBlueStrip)(bottomRect);
-        halfCropped.copyTo(*_croppedBlueStrip);
-        *_originalCroppedStrip = (*_originalCroppedStrip)(bottomRect);
-        
+        if ( (_input->rows/1.4) < _croppedBlueStrip->rows){ // MOST PROBABLY THE CROPPED IT'S THE FULL STRIP
+            // CROP HALF BOTTOM
+            
+            Rect bottomRect = Rect(0, _croppedBlueStrip->rows/2, _croppedBlueStrip->cols, _croppedBlueStrip->rows/2);
+            
+               Mat halfCropped = (*_croppedBlueStrip)(bottomRect);
+              halfCropped.copyTo(*_croppedBlueStrip);
+                *_originalCroppedStrip = (*_originalCroppedStrip)(bottomRect);
+
+        }
+                
         threshold(*_croppedBlueStrip, *_croppedBlueStrip, BINARIZE_THRESH, 255, CV_THRESH_BINARY);
         
         
@@ -77,13 +82,14 @@ void LPFranceSegmenterImpl::cropBlueStrip(Mat *blueZoneMasking){
     vector<vector<Point> > contours;
     vector<Vec4i> contourHierarchy;
     
+    
     /** Contours find */
     findContours(*blueZoneMasking, contours, contourHierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_NONE, Point(0,0));
     
     /** Sorting **/
     std::sort(contours.begin(), contours.end(), descendingCompare);
     
-std:sort(contours.begin(),contours.begin()+1,horizontalCompare);
+    std:sort(contours.begin(),contours.begin()+2,horizontalCompare);
     
     std::vector<std::vector<cv::Point> > contours_poly(1);
     
@@ -101,6 +107,7 @@ std:sort(contours.begin(),contours.begin()+1,horizontalCompare);
     /** This image will be used for cropping the original characters from it */
     _originalCroppedStrip = new Mat();
     _croppedBlueStrip->copyTo(*_originalCroppedStrip);
+    
 
 }
 bool LPFranceSegmenterImpl::descendingCompare (vector<Point> i, vector<Point> j){
@@ -115,6 +122,11 @@ bool LPFranceSegmenterImpl::horizontalCompare(vector<Point>i, vector<Point>j){
     double xJ = mntJ.m10/mntJ.m00;
     return (xI > xJ);
 }
+
+bool LPFranceSegmenterImpl::horizontalCompareLeftRight(Rectangle i, Rectangle j){
+    return (i.getCenter().x < j.getCenter().x);
+}
+
 
 void LPFranceSegmenterImpl::extractCharacters(void){
     vector<vector<Point> > contoursBlue;
@@ -151,12 +163,23 @@ void LPFranceSegmenterImpl::extractCharacters(void){
         
     }
     
+    // SORT SQUARES!!
+    
+
     int validChars = testCharacters(centerList, charsGot);
+    vector<Rectangle> squareListVectorized;
+    
+    for (int i = 0; i <= validChars; ++i){
+        Rect square = *squareCharList[i];
+        Rectangle elem = Rectangle(square, *centerList[i]);
+        squareListVectorized.push_back(elem);
+    }
+    
+    std:sort(squareListVectorized.begin(), squareListVectorized.end(), horizontalCompareLeftRight);
     
     /** Fill the image list */
     for (int i = 0; i <= validChars; ++i){
-        Rect square = *squareCharList[i];
-        Mat temp = (*_originalCroppedStrip)(square);
+        Mat temp = (*_originalCroppedStrip)(squareListVectorized[i].getRect());
         Mat toPut = Mat(temp.rows, temp.cols, temp.type());
         temp.copyTo(toPut);
         result.push_back(toPut);
@@ -278,4 +301,7 @@ float LPFranceSegmenterImpl::getPercentageOfBlue(Mat*v){
     }
     return (totalHigh/totalPix)*100;
 }
+
+
+
 

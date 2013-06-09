@@ -37,6 +37,7 @@ public:
     void cropBlueStrip(Mat *blueZoneMasking);
     static bool descendingCompare (vector<Point> i, vector<Point> j);
     static bool horizontalCompare(vector<Point>i, vector<Point>j);
+    static bool horizontalCompareLeftRight(Rectangle i, Rectangle j);
     void extractCharacters(void);
     Rect* getRectCharFromContour(vector<Point> contour, Point * center);
     int testCharacters(Point** centers, int size);

@@ -26,7 +26,7 @@ string getCountryCode(Mat inputFile, Mat** withoutStrip);
 
 
 int main (int argc, char **argv){
-    Mat source = imread(genFullPath("sample1xxx.jpg"));
+    Mat source = imread(genFullPath("franceTest2.jpg"));
        
     
     LPFranceSegmenter seg = LPFranceSegmenter(source);
@@ -34,7 +34,7 @@ int main (int argc, char **argv){
     vector<Mat> result = seg.getResult();
 
     OCREngine ocrEngine = OCREngine(NULL, "eng");
-  //  ocrEngine.setWhiteList("0123456789");
+    ocrEngine.setWhiteList("0123456789");
 
     stringstream strStream;
     for (int i = 0; i < result.size(); ++i){
@@ -63,16 +63,6 @@ int main (int argc, char **argv){
 }
 
 
-void showImageGUI(const string sWindowName, int iStopKey, const Mat oInputImage){
-    
-    namedWindow(sWindowName);
-    imshow(sWindowName, oInputImage);
-    while (true){
-        if (waitKey() == iStopKey)
-            break;
-    }
-    destroyWindow(sWindowName);
-}
 
 string genFullPath(const char file[]){
     stringstream fullpath;
