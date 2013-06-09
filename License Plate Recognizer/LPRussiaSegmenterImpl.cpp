@@ -67,7 +67,7 @@ void LPRussiaSegmenterImpl::processForResult(Mat *input){
     }
     
     /** Sort them */
-    sort(listOfSquares.begin(),listOfSquares.end(),squareCompare);
+    std::sort(listOfSquares.begin(),listOfSquares.end(),squareCompare);
     
     /** Second pass filter and result storing*/
     vector<Mat> resultToReturn;
@@ -97,7 +97,7 @@ void LPRussiaSegmenterImpl::processForResult(Mat *input){
 void LPRussiaSegmenterImpl::initializeThresholds(){
     // THRESHOLDS
     THRESHOLD_BINARIZE = 92;
-    SQUARE_RATIO = 2.5;
+    SQUARE_RATIO = 2.4;
     MIN_SQUARE_HEIGHT_PERCENTAGE = 18.18;
     MIN_SQUARE_WIDTH_PERCENTAGE = 4;
 }
